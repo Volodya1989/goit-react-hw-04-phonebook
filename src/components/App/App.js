@@ -5,6 +5,7 @@ import ContactForm from "components/ContactForm";
 import ContactList from "components/ContactList";
 import Filter from "components/Filter";
 import { nanoid } from "nanoid";
+import Notiflix from "notiflix";
 
 const useLocalStorage = (key, defaultValue) => {
   const [state, setState] = useState(() => {
@@ -33,15 +34,18 @@ const App = () => {
         (contact) => contact.name.toLowerCase() === data.name.toLowerCase()
       );
       if (isPresentOnList) {
-        alert(`${data.name} is already in contacts.`);
+        Notiflix.Notify.failure(`${data.name} is already in your contacts.`);
         return [...prevContacts];
       } else {
+        Notiflix.Notify.success(`${data.name} ADDED to your contact list.`);
         return [...prevContacts, data];
       }
     });
   };
 
   const deleteContact = (contactId) => {
+    Notiflix.Notify.success(`Record DELETED from your contact list.`);
+
     setContacts((prevState) => {
       return prevState.filter((contact) => contact.id !== contactId);
     });
