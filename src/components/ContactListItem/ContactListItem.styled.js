@@ -22,6 +22,7 @@ export const Text = styled.p`
   align-items: center;
   margin-left: 10px;
   font-weight: 500;
+  text-transform: capitalize;
 `;
 
 export const Span = styled.span`
