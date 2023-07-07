@@ -1,22 +1,11 @@
 // Separate named imports, this makes the code more readable
-import { useEffect, useState } from "react";
 import { Container, Phonebook, Contacts } from "components/App/App.styled";
 import ContactForm from "components/ContactForm";
 import ContactList from "components/ContactList";
 import Filter from "components/Filter";
 import { nanoid } from "nanoid";
 import Notiflix from "notiflix";
-
-const useLocalStorage = (key, defaultValue) => {
-  const [state, setState] = useState(() => {
-    return JSON.parse(window.localStorage.getItem(key)) ?? defaultValue;
-  });
-
-  useEffect(() => {
-    window.localStorage.setItem(key, JSON.stringify(state));
-  }, [key, state]);
-  return [state, setState];
-};
+import useLocalStorage from "utils/customHooks";
 
 const App = () => {
   const [contacts, setContacts] = useLocalStorage("contacts", []);
